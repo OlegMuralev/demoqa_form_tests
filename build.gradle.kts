@@ -1,5 +1,7 @@
 plugins {
     kotlin("jvm") version "2.0.20"
+    id("io.qameta.allure") version "2.12.0"
+
 }
 
 group = "muralev"
@@ -10,7 +12,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    implementation("com.codeborne:selenide:7.6.1")
+    implementation("io.qameta.allure:allure-rest-assured:2.29.0")
+    implementation("org.junit.jupiter:junit-jupiter:5.10.0")
 }
 
 tasks.test {

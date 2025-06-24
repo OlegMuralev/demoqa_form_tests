@@ -1,15 +1,15 @@
 package pages
 
-import com.codeborne.selenide.SelenideElement
-import com.codeborne.selenide.Selenide.*
-import com.codeborne.selenide.Selenide.`$` as s
+import com.codeborne.selenide.Condition
+import com.codeborne.selenide.Selenide
+import com.codeborne.selenide.Selenide.open
+import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
-import com.codeborne.selenide.Condition.disappear
-
 import java.time.Duration
+import com.codeborne.selenide.Selenide.`$` as s
 
 
-object StudentRegistrationPage {
+class StudentRegistrationPage {
     private val firstNameInput = s("#firstName")
     private val lastNameInput = s("#lastName")
     private val userEmailInput = s("#userEmail")
@@ -24,7 +24,32 @@ object StudentRegistrationPage {
 
 
     @Step
-    fun open() {
+    fun openPageRemoveBanners(): StudentRegistrationPage {
+        return openPage()
+            .removeBanners()
+            .waitForAdToDisappear()
+    }
+
+    private fun openPage(): StudentRegistrationPage {
         open("/automation-practice-form")
+        return this
+    }
+
+    private fun removeBanners(): StudentRegistrationPage {
+        sleep(2000)
+        Selenide.executeJavaScript<Any>("$('#fixedban').remove();")
+        Selenide.executeJavaScript<Any>("$('footer').remove();")
+        Selenide.executeJavaScript<Any>("$('iframe').remove();")
+        return this
+    }
+
+    private fun waitForAdToDisappear(): StudentRegistrationPage {
+        Selenide.`$`("#fixedban").should(Condition.disappear, Duration.ofSeconds(5))
+        Selenide.`$`("footer").should(Condition.disappear, Duration.ofSeconds(5))
+        return this
+    }
+
+    fun setFirstName(name : String) {
+        firstNameInput.setValue(name)
     }
 }

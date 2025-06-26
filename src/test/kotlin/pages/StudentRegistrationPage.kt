@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
+import utils.Gender
 import java.time.Duration
 import com.codeborne.selenide.Selenide.`$` as s
 
@@ -52,4 +53,17 @@ class StudentRegistrationPage {
     fun setFirstName(name : String) {
         firstNameInput.setValue(name)
     }
+
+    fun setLastName(lastname : String) {
+        lastNameInput.setValue(lastname)
+    }
+
+    fun setUserEmail(email : String) {
+        userEmailInput.setValue(email)
+    }
+
+    fun selectGender(gender: Gender) {
+        genderWrapper.`$x`(".//label[text()='${gender.displayedName}']").click()
+    }
+
 }

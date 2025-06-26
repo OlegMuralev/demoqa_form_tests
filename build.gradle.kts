@@ -16,7 +16,6 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-java:$seleniumVersion")
     testImplementation("org.seleniumhq.selenium:selenium-devtools-v137:$seleniumVersion")
 
-    // Selenide & прочее
     testImplementation("com.codeborne:selenide:7.6.1")
     testImplementation("io.qameta.allure:allure-rest-assured:2.29.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")

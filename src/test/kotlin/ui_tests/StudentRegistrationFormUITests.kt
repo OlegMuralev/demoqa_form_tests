@@ -14,14 +14,14 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.fillLastName()
         steps.fillUserEmail()
         steps.selectGender()
-/*        steps.setMobilePhone()
-        steps.setDateOfBirth
+        steps.setMobilePhone()
         steps.setDateOfBirth()
-        steps.setSubjects()
-        steps.setHobby()
-        steps.uploadPhoto()
-        steps.setCurrentAddress()
-        steps.setStateAndCity()*/
+/*                steps.setDateOfBirth()
+                steps.setSubjects()
+                steps.setHobby()
+                steps.uploadPhoto()
+                steps.setCurrentAddress()
+                steps.setStateAndCity()*/
     }
 
 }

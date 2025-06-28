@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
+import utils.Calendar
 import utils.Gender
 import java.time.Duration
 import com.codeborne.selenide.Selenide.`$` as s
@@ -15,7 +16,7 @@ class StudentRegistrationPage {
     private val lastNameInput = s("#lastName")
     private val userEmailInput = s("#userEmail")
     private val genderWrapper = s("#genterWrapper")
-    private val userNumber = s("#userNumber")
+    private val userMobilePhone = s("#userNumber")
     private val calendarInput = s("#dateOfBirthInput")
     private val subjectsInput = s("#subjectsInput")
     private val uploadPicture = s("#uploadPicture")
@@ -23,6 +24,7 @@ class StudentRegistrationPage {
     private val currentAddress = s("#currentAddress")
     private val submitButton = s("button#submit")
 
+    var calendar: Calendar = Calendar()
 
     @Step
     fun openPageRemoveBanners(): StudentRegistrationPage {
@@ -64,6 +66,15 @@ class StudentRegistrationPage {
 
     fun selectGender(gender: Gender) {
         genderWrapper.`$x`(".//label[text()='${gender.displayedName}']").click()
+    }
+
+    fun setMobilePhone(phone : String) {
+        userMobilePhone.setValue(phone)
+    }
+
+    fun setDateOfBirth(day : String, month : String, year : String) {
+        calendarInput.click()
+        calendar.setDate(day, month, year)
     }
 
 }

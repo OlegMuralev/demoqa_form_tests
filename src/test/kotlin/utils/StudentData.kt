@@ -7,7 +7,6 @@ data class StudentData(
     var phone: String,
     var email: String,
     var address: String,
-
     var dayOfBirth: String,
     var monthOfBirth: String,
     var yearOfBirth: String,

@@ -28,8 +28,16 @@ class WebStepsForStudentRegistrationPage {
     }
 
     @Step("Выбрать пол случайным образом")
-
     fun selectGender() {
         studentRegistrationPage.selectGender(student.gender)
+    }
+    @Step("Заполнить поле 'Mobile' случайным значением")
+    fun setMobilePhone() {
+        studentRegistrationPage.setMobilePhone(student.phone)
+    }
+
+    @Step("Заполнить поле 'Date Of Birth'")
+    fun setDateOfBirth() {
+        studentRegistrationPage.setDateOfBirth(student.dayOfBirth,student.monthOfBirth,student.yearOfBirth)
     }
 }

@@ -1,9 +1,9 @@
-package utils
+package enums
 
 enum class Gender(val displayedName: String) {
-    MALE("Male"),
-    FEMALE("Female"),
-    OTHER("Other");
+    MALE(displayedName = "Male"),
+    FEMALE(displayedName = "Female"),
+    OTHER(displayedName = "Other");
 
     companion object {
         fun getRandom(): Gender = entries.toTypedArray().random()

@@ -6,7 +6,7 @@ import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
 import utils.CalendarComponent
-import utils.Gender
+import enums.Gender
 import java.time.Duration
 import com.codeborne.selenide.Selenide.`$` as s
 
@@ -74,7 +74,12 @@ class StudentRegistrationPage {
 
     fun setDateOfBirth(day : String, month : String, year : String) {
         calendarInput.click()
+
         calendarComponent.setDate(day, month, year)
     }
 
+    fun fillSubject(subject : String) {
+        subjectsInput.click()
+        subjectsInput.setValue(subject).pressEnter()
+    }
 }

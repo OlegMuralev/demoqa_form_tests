@@ -1,5 +1,7 @@
 package utils
 
+import enums.Gender
+
 data class StudentData(
     var firstName: String,
     var lastName: String,

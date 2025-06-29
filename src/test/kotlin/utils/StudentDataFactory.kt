@@ -1,9 +1,12 @@
 package utils
 
+import enums.Gender
+import enums.Subject
+
 object StudentDataFactory {
     private val names = listOf("John", "Alice", "Michael", "Sara", "Dmitry", "Aigerim")
     private val lastNames = listOf("Smith", "Ivanov", "Kim", "Zhang", "Doe", "Muralev")
-    private val subjects = listOf("Math", "Biology", "History", "English", "Physics")
+    private val subject = Subject
     private val hobbies = listOf("Reading", "Sports", "Music", "Drawing")
     private val photos = listOf("avatar1.png", "avatar2.jpg", "student_photo.png")
     private val states = listOf("California", "Texas", "Florida", "Almaty", "Astana")
@@ -18,8 +21,8 @@ object StudentDataFactory {
     fun create(): StudentData {
         val firstName: String  = names.random()
         val lastName: String  = lastNames.random()
-        val gender: Gender  = Gender.getRandom()
-        val phone = "+7${(9000000000..9999999999).random()}"
+        val gender: Gender = Gender.getRandom()
+        val phone = "${(9000000000..9999999999).random()}"
         val email = "${firstName.lowercase()}.${lastName.lowercase()}@example.com"
         val address = "Street ${('A'..'Z').random()}-${(1..100).random()}"
         val dayOfBirth: String  = (1..28).random().toString().padStart(2, '0')
@@ -28,7 +31,7 @@ object StudentDataFactory {
             "July", "August", "September", "October", "November", "December"
         ).random()
         val yearOfBirth: String = (1980..2010).random().toString()
-        val subject: String  = subjects.random()
+        val subject: String  = subject.getRandom().displayedName
         val hobby: String  = hobbies.random()
         val photo: String  = photos.random()
         val state: String  = states.random()

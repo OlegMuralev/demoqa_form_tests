@@ -40,4 +40,9 @@ class WebStepsForStudentRegistrationPage {
     fun setDateOfBirth() {
         studentRegistrationPage.setDateOfBirth(student.dayOfBirth,student.monthOfBirth,student.yearOfBirth)
     }
+
+    @Step("Заполнить поле 'Subjects' случайным значением")
+    fun setSubject() {
+        studentRegistrationPage.fillSubject(student.subject)
+    }
 }

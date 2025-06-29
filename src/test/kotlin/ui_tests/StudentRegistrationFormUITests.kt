@@ -16,12 +16,9 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.selectGender()
         steps.setMobilePhone()
         steps.setDateOfBirth()
-/*                steps.setDateOfBirth()
-                steps.setSubjects()
-                steps.setHobby()
-                steps.uploadPhoto()
-                steps.setCurrentAddress()
-                steps.setStateAndCity()*/
+        steps.setSubject()
+//                steps.setHobby() //               steps.uploadPhoto()
+//                steps.setCurrentAddress()
+//                steps.setStateAndCity()
     }
-
 }

@@ -7,6 +7,7 @@ import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
 import utils.CalendarComponent
 import enums.Gender
+import enums.Hobby
 import java.time.Duration
 import com.codeborne.selenide.Selenide.`$` as s
 
@@ -81,5 +82,11 @@ class StudentRegistrationPage {
     fun fillSubject(subject : String) {
         subjectsInput.click()
         subjectsInput.setValue(subject).pressEnter()
+    }
+
+    fun selectHobbies(hobbies : List<Hobby>) {
+        hobbies.forEach { hobby ->
+            hobbiesWrapper.`$x`(".//label[text()='${hobby.displayedName}']").click()
+        }
     }
 }

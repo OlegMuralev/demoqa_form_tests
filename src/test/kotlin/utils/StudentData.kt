@@ -1,6 +1,7 @@
 package utils
 
 import enums.Gender
+import enums.Hobby
 
 data class StudentData(
     var firstName: String,
@@ -13,7 +14,7 @@ data class StudentData(
     var monthOfBirth: String,
     var yearOfBirth: String,
     var subject: String,
-    var hobby: String,
+    var hobby: List<Hobby>,
     var photo: String,
     var state: String,
     var city: String

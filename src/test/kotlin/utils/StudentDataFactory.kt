@@ -1,6 +1,7 @@
 package utils
 
 import enums.Gender
+import enums.Hobby
 import enums.Subject
 
 object StudentDataFactory {
@@ -10,7 +11,6 @@ object StudentDataFactory {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     )
-    private val hobbies = listOf("Reading", "Sports", "Music", "Drawing")
     private val photos = listOf("avatar1.png", "avatar2.jpg", "student_photo.png")
     private val states = listOf("California", "Texas", "Florida", "Almaty", "Astana")
     private val citiesByState = mapOf(
@@ -32,7 +32,7 @@ object StudentDataFactory {
         val monthOfBirth: String  = months.random()
         val yearOfBirth: String = (1980..2010).random().toString()
         val subject: String = Subject.getRandom().displayedName
-        val hobby: String  = hobbies.random()
+        val hobby: List<Hobby>  = Hobby.getRandomHobbies()
         val photo: String  = photos.random()
         val state: String  = states.random()
         val city: String  = citiesByState[state]?.random().toString()

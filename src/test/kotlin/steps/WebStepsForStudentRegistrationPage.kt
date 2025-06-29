@@ -1,5 +1,6 @@
 package steps
 
+import enums.Hobby
 import io.qameta.allure.Step
 import pages.StudentRegistrationPage
 import utils.StudentDataFactory
@@ -44,5 +45,13 @@ class WebStepsForStudentRegistrationPage {
     @Step("Заполнить поле 'Subjects' случайным значением")
     fun setSubject() {
         studentRegistrationPage.fillSubject(student.subject)
+    }
+    @Step("Выбрать хобби случайным образом")
+    fun selectRandomHobbies() {
+        studentRegistrationPage.selectHobbies(student.hobby)
+    }
+
+    @Step("Выбрать определенное хобби")
+    fun selectHobby(hobby: Hobby) {
     }
 }

@@ -6,7 +6,10 @@ import enums.Subject
 object StudentDataFactory {
     private val names = listOf("John", "Alice", "Michael", "Sara", "Dmitry", "Aigerim")
     private val lastNames = listOf("Smith", "Ivanov", "Kim", "Zhang", "Doe", "Muralev")
-    private val subject = Subject
+    private val months  = listOf(
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    )
     private val hobbies = listOf("Reading", "Sports", "Music", "Drawing")
     private val photos = listOf("avatar1.png", "avatar2.jpg", "student_photo.png")
     private val states = listOf("California", "Texas", "Florida", "Almaty", "Astana")
@@ -26,12 +29,9 @@ object StudentDataFactory {
         val email = "${firstName.lowercase()}.${lastName.lowercase()}@example.com"
         val address = "Street ${('A'..'Z').random()}-${(1..100).random()}"
         val dayOfBirth: String  = (1..28).random().toString().padStart(2, '0')
-        val monthOfBirth: String  = listOf(
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ).random()
+        val monthOfBirth: String  = months.random()
         val yearOfBirth: String = (1980..2010).random().toString()
-        val subject: String  = subject.getRandom().displayedName
+        val subject: String = Subject.getRandom().displayedName
         val hobby: String  = hobbies.random()
         val photo: String  = photos.random()
         val state: String  = states.random()

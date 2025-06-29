@@ -5,7 +5,7 @@ import com.codeborne.selenide.Selenide
 import com.codeborne.selenide.Selenide.open
 import com.codeborne.selenide.Selenide.sleep
 import io.qameta.allure.Step
-import utils.Calendar
+import utils.CalendarComponent
 import utils.Gender
 import java.time.Duration
 import com.codeborne.selenide.Selenide.`$` as s
@@ -24,7 +24,7 @@ class StudentRegistrationPage {
     private val currentAddress = s("#currentAddress")
     private val submitButton = s("button#submit")
 
-    var calendar: Calendar = Calendar()
+    private val calendarComponent: CalendarComponent = CalendarComponent()
 
     @Step
     fun openPageRemoveBanners(): StudentRegistrationPage {
@@ -74,7 +74,7 @@ class StudentRegistrationPage {
 
     fun setDateOfBirth(day : String, month : String, year : String) {
         calendarInput.click()
-        calendar.setDate(day, month, year)
+        calendarComponent.setDate(day, month, year)
     }
 
 }

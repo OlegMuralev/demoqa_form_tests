@@ -24,8 +24,8 @@ object StudentDataFactory {
         val address = "Street ${('A'..'Z').random()}-${(1..100).random()}"
         val dayOfBirth: String  = (1..28).random().toString().padStart(2, '0')
         val monthOfBirth: String  = listOf(
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
         ).random()
         val yearOfBirth: String = (1980..2010).random().toString()
         val subject: String  = subjects.random()

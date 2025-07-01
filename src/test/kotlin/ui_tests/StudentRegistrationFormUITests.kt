@@ -19,7 +19,8 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.setSubject()
         steps.selectRandomHobbies()
         steps.uploadPhoto()
-//                steps.setCurrentAddress()
-//                steps.setStateAndCity()
+        steps.setCurrentAddress()
+        steps.setStateAndCity()
+        steps.clickSumbitButton()
     }
 }

@@ -23,6 +23,8 @@ class StudentRegistrationPage {
     private val uploadPicture = s("#uploadPicture")
     private val hobbiesWrapper = s("#hobbiesWrapper")
     private val currentAddress = s("#currentAddress")
+    private val stateDropDown = s("#react-select-3-input")
+    private val cityDropDown = s("#react-select-4-input")
     private val submitButton = s("button#submit")
 
     private val calendarComponent: CalendarComponent = CalendarComponent()
@@ -92,5 +94,18 @@ class StudentRegistrationPage {
 
     fun uploadPicture(pathToFile : String) {
         uploadPicture.uploadFromClasspath(pathToFile)
+    }
+
+    fun setCurrentAddress(address : String) {
+        currentAddress.setValue(address)
+    }
+
+    fun setStateAndCity(state : String, city : String) {
+        stateDropDown.setValue(state).pressEnter()
+        cityDropDown.setValue(city).pressEnter()
+    }
+
+    fun clickSubmitButton() {
+        submitButton.click()
     }
 }

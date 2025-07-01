@@ -59,4 +59,19 @@ class WebStepsForStudentRegistrationPage {
     fun uploadPhoto() {
         studentRegistrationPage.uploadPicture(student.photo)
     }
+
+    @Step("Заполнить поле 'Current Address' случайным значением")
+    fun setCurrentAddress() {
+        studentRegistrationPage.setCurrentAddress(student.address)
+    }
+
+    @Step("Выбрать область и город")
+    fun setStateAndCity() {
+        studentRegistrationPage.setStateAndCity(student.state,student.city)
+    }
+
+    @Step("Нажать кнопку Submit")
+    fun clickSumbitButton() {
+        studentRegistrationPage.clickSubmitButton()
+    }
 }

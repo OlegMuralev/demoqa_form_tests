@@ -12,13 +12,12 @@ object StudentDataFactory {
         "July", "August", "September", "October", "November", "December"
     )
     private val photos = listOf("avatar1.png", "avatar2.jpg", "student_photo.png")
-    private val states = listOf("California", "Texas", "Florida", "Almaty", "Astana")
+    private val states = listOf("NCR", "Uttar Pradesh", "Haryana", "Rajasthan")
     private val citiesByState = mapOf(
-        "California" to listOf("Los Angeles", "San Diego"),
-        "Texas" to listOf("Dallas", "Austin"),
-        "Florida" to listOf("Miami", "Orlando"),
-        "Almaty" to listOf("Almaty"),
-        "Astana" to listOf("Astana")
+        "NCR" to listOf("Delhi", "Gurgaon", "Noida"),
+        "Uttar Pradesh" to listOf("Agra", "Lucknow", "Merrut"),
+        "Haryana" to listOf("Karnal", "Panipat"),
+        "Rajasthan" to listOf("Jaipur", "Jaiselmer")
     )
 
     fun create(): StudentData {

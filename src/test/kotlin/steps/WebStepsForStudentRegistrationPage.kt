@@ -54,4 +54,9 @@ class WebStepsForStudentRegistrationPage {
     @Step("Выбрать определенное хобби")
     fun selectHobby(hobby: Hobby) {
     }
+
+    @Step("Загрузить фото")
+    fun uploadPhoto() {
+        studentRegistrationPage.uploadPicture(student.photo)
+    }
 }

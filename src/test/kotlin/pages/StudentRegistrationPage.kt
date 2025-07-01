@@ -89,4 +89,8 @@ class StudentRegistrationPage {
             hobbiesWrapper.`$x`(".//label[text()='${hobby.displayedName}']").click()
         }
     }
+
+    fun uploadPicture(pathToFile : String) {
+        uploadPicture.uploadFromClasspath(pathToFile)
+    }
 }

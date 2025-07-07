@@ -3,9 +3,12 @@ package ui_tests
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import steps.WebStepsForStudentRegistrationPage
+import utils.StudentDataFactory
 
 class StudentRegistrationFormUITests: TestBase() {
-    private val steps = WebStepsForStudentRegistrationPage()
+    private val student = StudentDataFactory.create()
+    private val steps = WebStepsForStudentRegistrationPage(student)
+
     @Test
     @DisplayName("Проверка заполнения всех полей формы регистрации")
     fun testFillAllFieldsOfTheRegistrationForm() {
@@ -21,7 +24,7 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.uploadPhoto()
         steps.setCurrentAddress()
         steps.setStateAndCity()
-        steps.clickSumbitButtonAndCheckModalDialogAppears()
+        steps.clickSubmitButtonAndCheckModalDialogAppears()
 
         steps.assertStudentName()
         steps.assertStudentEmail()

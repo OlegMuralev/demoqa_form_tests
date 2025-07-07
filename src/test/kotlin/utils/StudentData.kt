@@ -18,4 +18,6 @@ data class StudentData(
     var photo: String,
     var state: String,
     var city: String
-)
+) {
+    fun getFormattedDateOfBirth() = "$dayOfBirth $monthOfBirth,$yearOfBirth"
+}

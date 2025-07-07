@@ -3,11 +3,10 @@ package steps
 import io.qameta.allure.Step
 import pages.StudentRegistrationPage
 import pages.ThanksForSubmittingFormModalWindow
-import utils.StudentDataFactory
+import utils.StudentData
 
-class WebStepsForStudentRegistrationPage {
+class WebStepsForStudentRegistrationPage(private val student: StudentData) {
     private val studentRegistrationPage = StudentRegistrationPage()
-    private val student = StudentDataFactory.create()
     private val thanksForSubmittingFormModalWindow = ThanksForSubmittingFormModalWindow()
 
     @Step("Открыть страницу формы регистрации студента")
@@ -68,14 +67,14 @@ class WebStepsForStudentRegistrationPage {
     }
 
     @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
-    fun clickSumbitButtonAndCheckModalDialogAppears() {
+    fun clickSubmitButtonAndCheckModalDialogAppears() {
         studentRegistrationPage.clickSubmitButton()
         thanksForSubmittingFormModalWindow.checkModalDialogAppear()
     }
 
     @Step("Проверить, что поле 'Student Name' заполнено корректно")
     fun assertStudentName() {
-        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Name", value = "${student.firstName} ${student.lastName}")
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Name", value = student.getFormattedDateOfBirth())
     }
 
     @Step("Проверить, что поле 'Student Email' заполнено корректно")

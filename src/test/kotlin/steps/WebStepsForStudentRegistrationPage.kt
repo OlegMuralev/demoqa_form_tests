@@ -1,13 +1,14 @@
 package steps
 
-import enums.Hobby
 import io.qameta.allure.Step
 import pages.StudentRegistrationPage
+import pages.ThanksForSubmittingFormModalWindow
 import utils.StudentDataFactory
 
 class WebStepsForStudentRegistrationPage {
     private val studentRegistrationPage = StudentRegistrationPage()
     private val student = StudentDataFactory.create()
+    private val thanksForSubmittingFormModalWindow = ThanksForSubmittingFormModalWindow()
 
     @Step("Открыть страницу формы регистрации студента")
     fun openStudentRegistrationForm() {
@@ -51,10 +52,6 @@ class WebStepsForStudentRegistrationPage {
         studentRegistrationPage.selectHobbies(student.hobby)
     }
 
-    @Step("Выбрать определенное хобби")
-    fun selectHobby(hobby: Hobby) {
-    }
-
     @Step("Загрузить фото")
     fun uploadPhoto() {
         studentRegistrationPage.uploadPicture(student.photo)
@@ -70,8 +67,62 @@ class WebStepsForStudentRegistrationPage {
         studentRegistrationPage.setStateAndCity(student.state,student.city)
     }
 
-    @Step("Нажать кнопку Submit")
-    fun clickSumbitButton() {
+    @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
+    fun clickSumbitButtonAndCheckModalDialogAppears() {
         studentRegistrationPage.clickSubmitButton()
+        thanksForSubmittingFormModalWindow.checkModalDialogAppear()
+    }
+
+    @Step("Проверить, что поле 'Student Name' заполнено корректно")
+    fun assertStudentName() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Name", value = "${student.firstName} ${student.lastName}")
+    }
+
+    @Step("Проверить, что поле 'Student Email' заполнено корректно")
+    fun assertStudentEmail() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Email", value = student.email)
+    }
+
+    @Step("Проверить, что поле 'Gender' заполнено корректно")
+    fun assertGender() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Gender", value = student.gender.displayedName)
+    }
+
+    @Step("Проверить, что поле 'Mobile' заполнено корректно")
+    fun assertMobilePhone() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Mobile", value = student.phone)
+    }
+
+    @Step("Проверить, что поле 'Date of Birth' заполнено корректно")
+    fun assertDateOfBirth() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Date of Birth", value = "${student.dayOfBirth} ${student.monthOfBirth},${student.yearOfBirth}")
+    }
+
+    @Step("Проверить, что поле 'Subjects' заполнено корректно")
+    fun assertSubject() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Subjects", value = student.subject)
+    }
+
+    @Step("Проверить, что поле 'Hobbies' заполнено корректно")
+    fun assertHobbies() {
+        val hobbiesList: String = student.hobby.joinToString(", "){ it.displayedName }
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Hobbies", value = hobbiesList)
+    }
+
+    @Step("Проверить, что поле 'Picture' заполнено корректно")
+    fun assertPicture() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Picture", value = student.photo)
+    }
+
+    @Step("Проверить, что поле 'State and City' заполнено корректно")
+    fun assertStateAndCity() {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "State and City", value = "${student.state} ${student.city}")
+    }
+
+    @Step("Нажать кнопку 'Close' в модальном окне 'Thanks for submitting the form'")
+    fun clickCloseButton() {
+        thanksForSubmittingFormModalWindow.clickCloseButton()
+        thanksForSubmittingFormModalWindow.checkModalDialogDisappear()
+
     }
 }

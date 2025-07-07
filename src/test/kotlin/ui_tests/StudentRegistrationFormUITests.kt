@@ -21,6 +21,17 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.uploadPhoto()
         steps.setCurrentAddress()
         steps.setStateAndCity()
-        steps.clickSumbitButton()
+        steps.clickSumbitButtonAndCheckModalDialogAppears()
+
+        steps.assertStudentName()
+        steps.assertStudentEmail()
+        steps.assertGender()
+        steps.assertMobilePhone()
+        steps.assertDateOfBirth()
+        steps.assertSubject()
+        steps.assertHobbies()
+        steps.assertPicture()
+        steps.assertStateAndCity()
+        steps.clickCloseButton()
     }
 }

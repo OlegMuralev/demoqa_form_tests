@@ -5,10 +5,11 @@ import pages.StudentRegistrationPage
 import pages.ThanksForSubmittingFormModalWindow
 import utils.StudentData
 
-class WebStepsForStudentRegistrationPage(private val student: StudentData) {
-    private val studentRegistrationPage = StudentRegistrationPage()
-    private val thanksForSubmittingFormModalWindow = ThanksForSubmittingFormModalWindow()
-
+class WebStepsForStudentRegistrationPage(
+    private val student: StudentData,
+    private val studentRegistrationPage: StudentRegistrationPage = StudentRegistrationPage(),
+    private val thanksForSubmittingFormModalWindow: ThanksForSubmittingFormModalWindow = ThanksForSubmittingFormModalWindow()
+) {
     @Step("Открыть страницу формы регистрации студента")
     fun openStudentRegistrationForm() {
         studentRegistrationPage.openPageRemoveBanners()
@@ -18,6 +19,7 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
     fun fillFirstName() {
         studentRegistrationPage.setFirstName(student.firstName)
     }
+
     @Step("Заполнить поле 'Last Name' случайным значением")
     fun fillLastName() {
         studentRegistrationPage.setLastName(student.lastName)
@@ -32,6 +34,7 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
     fun selectGender() {
         studentRegistrationPage.selectGender(student.gender)
     }
+
     @Step("Заполнить поле 'Mobile' случайным значением")
     fun setMobilePhone() {
         studentRegistrationPage.setMobilePhone(student.phone)
@@ -39,13 +42,14 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Заполнить поле 'Date Of Birth'")
     fun setDateOfBirth() {
-        studentRegistrationPage.setDateOfBirth(student.dayOfBirth,student.monthOfBirth,student.yearOfBirth)
+        studentRegistrationPage.setDateOfBirth(student.dayOfBirth, student.monthOfBirth, student.yearOfBirth)
     }
 
     @Step("Заполнить поле 'Subjects' случайным значением")
     fun setSubject() {
         studentRegistrationPage.fillSubject(student.subject)
     }
+
     @Step("Выбрать хобби случайным образом")
     fun selectRandomHobbies() {
         studentRegistrationPage.selectHobbies(student.hobby)
@@ -63,7 +67,7 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Выбрать область и город")
     fun setStateAndCity() {
-        studentRegistrationPage.setStateAndCity(student.state,student.city)
+        studentRegistrationPage.setStateAndCity(student.state, student.city)
     }
 
     @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
@@ -74,7 +78,10 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Проверить, что поле 'Student Name' заполнено корректно")
     fun assertStudentName() {
-        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Name", value = student.getFormattedDateOfBirth())
+        thanksForSubmittingFormModalWindow.checkTableResponsive(
+            label = "Student Name",
+            value = "${student.firstName} ${student.lastName}"
+        )
     }
 
     @Step("Проверить, что поле 'Student Email' заполнено корректно")
@@ -94,7 +101,10 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Проверить, что поле 'Date of Birth' заполнено корректно")
     fun assertDateOfBirth() {
-        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Date of Birth", value = "${student.dayOfBirth} ${student.monthOfBirth},${student.yearOfBirth}")
+        thanksForSubmittingFormModalWindow.checkTableResponsive(
+            label = "Date of Birth",
+            value = student.getFormattedDateOfBirth()
+        )
     }
 
     @Step("Проверить, что поле 'Subjects' заполнено корректно")
@@ -104,7 +114,7 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Проверить, что поле 'Hobbies' заполнено корректно")
     fun assertHobbies() {
-        val hobbiesList: String = student.hobby.joinToString(", "){ it.displayedName }
+        val hobbiesList: String = student.hobby.joinToString(", ") { it.displayedName }
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Hobbies", value = hobbiesList)
     }
 
@@ -115,7 +125,10 @@ class WebStepsForStudentRegistrationPage(private val student: StudentData) {
 
     @Step("Проверить, что поле 'State and City' заполнено корректно")
     fun assertStateAndCity() {
-        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "State and City", value = "${student.state} ${student.city}")
+        thanksForSubmittingFormModalWindow.checkTableResponsive(
+            label = "State and City",
+            value = "${student.state} ${student.city}"
+        )
     }
 
     @Step("Нажать кнопку 'Close' в модальном окне 'Thanks for submitting the form'")

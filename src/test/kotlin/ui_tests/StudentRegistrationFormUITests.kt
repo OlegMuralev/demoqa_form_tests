@@ -6,12 +6,13 @@ import steps.WebStepsForStudentRegistrationPage
 import utils.StudentDataFactory
 
 class StudentRegistrationFormUITests: TestBase() {
-    private val student = StudentDataFactory.create()
-    private val steps = WebStepsForStudentRegistrationPage(student)
 
     @Test
-    @DisplayName("Проверка заполнения всех полей формы регистрации")
+    @DisplayName("Проверка заполнения всех полей формы регистрации валидными данными")
     fun testFillAllFieldsOfTheRegistrationForm() {
+        val student = StudentDataFactory.create()
+        val steps = WebStepsForStudentRegistrationPage(student)
+
         steps.openStudentRegistrationForm()
         steps.fillFirstName()
         steps.fillLastName()
@@ -36,5 +37,27 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.assertPicture()
         steps.assertStateAndCity()
         steps.clickCloseButton()
+    }
+
+    @Test
+    @DisplayName("Проверка заполнения формы c невалидным Email")
+    fun testFillRegistrationFormWithInvalidEmail() {
+        val studentWithInvalidEmail = StudentDataFactory.createWithInvalidEmail()
+        val stepsWithInvalidEmail = WebStepsForStudentRegistrationPage(studentWithInvalidEmail)
+
+        stepsWithInvalidEmail.openStudentRegistrationForm()
+        stepsWithInvalidEmail.fillFirstName()
+        stepsWithInvalidEmail.fillLastName()
+        stepsWithInvalidEmail.fillUserEmail()
+        stepsWithInvalidEmail.selectGender()
+        stepsWithInvalidEmail.setMobilePhone()
+        stepsWithInvalidEmail.setDateOfBirth()
+        stepsWithInvalidEmail.setSubject()
+        stepsWithInvalidEmail.selectRandomHobbies()
+        stepsWithInvalidEmail.uploadPhoto()
+        stepsWithInvalidEmail.setCurrentAddress()
+        stepsWithInvalidEmail.setStateAndCity()
+        stepsWithInvalidEmail.clickSubmitButtonAndCheckModalDialogAppears()
+
     }
 }

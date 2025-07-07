@@ -41,4 +41,6 @@ object StudentDataFactory {
             dayOfBirth, monthOfBirth, yearOfBirth, subject, hobby, photo, state, city
         )
     }
+
+    fun createWithInvalidEmail(): StudentData = create().copy(email = "bad-email")
 }

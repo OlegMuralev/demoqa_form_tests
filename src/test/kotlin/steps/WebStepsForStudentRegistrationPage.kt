@@ -76,6 +76,22 @@ class WebStepsForStudentRegistrationPage(
         studentRegistrationPage.setStateAndCity(state, city)
     }
 
+    @Step("Заполнить все поля в форме")
+    fun fillAllFieldsInTheForm() {
+        fillFirstName()
+        fillLastName()
+        fillUserEmail()
+        selectGender()
+        setMobilePhone()
+        setDateOfBirth()
+        setSubject()
+        selectRandomHobbies()
+        uploadPhoto()
+        setCurrentAddress()
+        setStateAndCity()
+    }
+
+
     @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
     fun clickSubmitButtonAndCheckModalDialogAppears() {
         studentRegistrationPage.clickSubmitButton()

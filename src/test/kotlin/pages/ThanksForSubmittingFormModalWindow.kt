@@ -13,6 +13,10 @@ class ThanksForSubmittingFormModalWindow {
         modalDialog.should(appear)
     }
 
+    fun checkModalDialogNotAppear() {
+        modalDialog.shouldNot(appear)
+    }
+
     fun checkTableResponsive(label: String, value: String) {
         tableResponsive.`$`(byText(label)).parent().shouldHave(text(value))
     }

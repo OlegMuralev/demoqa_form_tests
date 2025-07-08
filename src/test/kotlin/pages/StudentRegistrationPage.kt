@@ -26,6 +26,7 @@ class StudentRegistrationPage {
     private val stateDropDown = s("#react-select-3-input")
     private val cityDropDown = s("#react-select-4-input")
     private val submitButton = s("button#submit")
+    private val userForm = s("#userForm")
 
     private val calendarComponent: CalendarComponent = CalendarComponent()
 
@@ -107,5 +108,9 @@ class StudentRegistrationPage {
 
     fun clickSubmitButton() {
         submitButton.click()
+    }
+
+    fun checkValidationFails() {
+        userForm.shouldHave(Condition.cssClass("was-validated"))
     }
 }

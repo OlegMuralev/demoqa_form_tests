@@ -26,8 +26,8 @@ class WebStepsForStudentRegistrationPage(
     }
 
     @Step("Заполнить поле 'Email' случайным значением")
-    fun fillUserEmail() {
-        studentRegistrationPage.setUserEmail(student.email)
+    fun fillUserEmail(email: String = student.email) {
+        studentRegistrationPage.setUserEmail(email)
     }
 
     @Step("Выбрать пол случайным образом")
@@ -74,6 +74,13 @@ class WebStepsForStudentRegistrationPage(
     fun clickSubmitButtonAndCheckModalDialogAppears() {
         studentRegistrationPage.clickSubmitButton()
         thanksForSubmittingFormModalWindow.checkModalDialogAppear()
+    }
+
+    @Step("Нажать кнопку Submit и проверить, что валидация поле не прошла'")
+    fun clickSubmitButtonExpectingValidationError() {
+        studentRegistrationPage.clickSubmitButton()
+        studentRegistrationPage.checkValidationFails()
+        thanksForSubmittingFormModalWindow.checkModalDialogNotAppear()
     }
 
     @Step("Проверить, что поле 'Student Name' заполнено корректно")

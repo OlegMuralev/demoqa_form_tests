@@ -40,9 +40,11 @@ class StudentRegistrationFormUITests: TestBase() {
     }
 
     @Test
-    @DisplayName("Проверка заполнения формы c невалидным Email")
+    @DisplayName("Проверка заполнения формы c невалидным Email -> получили ошибку, заполнили корректным email -> успех")
     fun testFillRegistrationFormWithInvalidEmail() {
-        val studentWithInvalidEmail = StudentDataFactory.createWithInvalidEmail()
+        val validEmail = "student1@example.com"
+        val invalidEmail = "bad-email"
+        val studentWithInvalidEmail = StudentDataFactory.create().copy(email = invalidEmail)
         val steps = WebStepsForStudentRegistrationPage(studentWithInvalidEmail)
 
         steps.openStudentRegistrationForm()
@@ -58,5 +60,8 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.setCurrentAddress()
         steps.setStateAndCity()
         steps.clickSubmitButtonExpectingValidationError()
+        steps.fillUserEmail(email = validEmail)
+        steps.clickSubmitButtonAndCheckModalDialogAppears()
+        steps.assertStudentEmail(email = validEmail)
     }
 }

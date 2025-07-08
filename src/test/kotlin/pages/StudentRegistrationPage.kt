@@ -78,7 +78,6 @@ class StudentRegistrationPage {
 
     fun setDateOfBirth(day : String, month : String, year : String) {
         calendarInput.click()
-
         calendarComponent.setDate(day, month, year)
     }
 

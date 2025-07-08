@@ -1,5 +1,7 @@
 package steps
 
+import enums.Gender
+import enums.Hobby
 import io.qameta.allure.Step
 import pages.StudentRegistrationPage
 import pages.ThanksForSubmittingFormModalWindow
@@ -15,59 +17,63 @@ class WebStepsForStudentRegistrationPage(
         studentRegistrationPage.openPageRemoveBanners()
     }
 
-    @Step("Заполнить поле 'First Name' случайным значением")
-    fun fillFirstName() {
-        studentRegistrationPage.setFirstName(student.firstName)
+    @Step("Заполнить поле 'First Name'")
+    fun fillFirstName(firstName: String = student.firstName) {
+        studentRegistrationPage.setFirstName(firstName)
     }
 
-    @Step("Заполнить поле 'Last Name' случайным значением")
-    fun fillLastName() {
-        studentRegistrationPage.setLastName(student.lastName)
+    @Step("Заполнить поле 'Last Name'")
+    fun fillLastName(lastName: String = student.lastName) {
+        studentRegistrationPage.setLastName(lastName)
     }
 
-    @Step("Заполнить поле 'Email' случайным значением")
+    @Step("Заполнить поле 'Email'")
     fun fillUserEmail(email: String = student.email) {
         studentRegistrationPage.setUserEmail(email)
     }
 
-    @Step("Выбрать пол случайным образом")
-    fun selectGender() {
-        studentRegistrationPage.selectGender(student.gender)
+    @Step("Выбрать пол")
+    fun selectGender(gender: Gender = student.gender) {
+        studentRegistrationPage.selectGender(gender)
     }
 
-    @Step("Заполнить поле 'Mobile' случайным значением")
-    fun setMobilePhone() {
-        studentRegistrationPage.setMobilePhone(student.phone)
+    @Step("Заполнить поле 'Mobile'")
+    fun setMobilePhone(phone: String = student.phone) {
+        studentRegistrationPage.setMobilePhone(phone)
     }
 
     @Step("Заполнить поле 'Date Of Birth'")
-    fun setDateOfBirth() {
-        studentRegistrationPage.setDateOfBirth(student.dayOfBirth, student.monthOfBirth, student.yearOfBirth)
+    fun setDateOfBirth(
+        dayOfBirth: String = student.dayOfBirth,
+        monthOfBirth: String = student.monthOfBirth,
+        yearOfBirth: String = student.yearOfBirth
+    ) {
+        studentRegistrationPage.setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
     }
 
-    @Step("Заполнить поле 'Subjects' случайным значением")
-    fun setSubject() {
-        studentRegistrationPage.fillSubject(student.subject)
+    @Step("Заполнить поле 'Subjects'")
+    fun setSubject(subject: String = student.subject) {
+        studentRegistrationPage.fillSubject(subject)
     }
 
-    @Step("Выбрать хобби случайным образом")
-    fun selectRandomHobbies() {
-        studentRegistrationPage.selectHobbies(student.hobby)
+    @Step("Выбрать хобби")
+    fun selectRandomHobbies(hobby: List<Hobby> = student.hobby) {
+        studentRegistrationPage.selectHobbies(hobby)
     }
 
     @Step("Загрузить фото")
-    fun uploadPhoto() {
-        studentRegistrationPage.uploadPicture(student.photo)
+    fun uploadPhoto(photo: String = student.photo) {
+        studentRegistrationPage.uploadPicture(photo)
     }
 
-    @Step("Заполнить поле 'Current Address' случайным значением")
-    fun setCurrentAddress() {
-        studentRegistrationPage.setCurrentAddress(student.address)
+    @Step("Заполнить поле 'Current Address'")
+    fun setCurrentAddress(address: String = student.address) {
+        studentRegistrationPage.setCurrentAddress(address)
     }
 
     @Step("Выбрать область и город")
-    fun setStateAndCity() {
-        studentRegistrationPage.setStateAndCity(student.state, student.city)
+    fun setStateAndCity(state: String = student.state, city: String = student.city) {
+        studentRegistrationPage.setStateAndCity(state, city)
     }
 
     @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
@@ -92,8 +98,8 @@ class WebStepsForStudentRegistrationPage(
     }
 
     @Step("Проверить, что поле 'Student Email' заполнено корректно")
-    fun assertStudentEmail() {
-        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Email", value = student.email)
+    fun assertStudentEmail(email: String = student.email) {
+        thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Email", value = email)
     }
 
     @Step("Проверить, что поле 'Gender' заполнено корректно")

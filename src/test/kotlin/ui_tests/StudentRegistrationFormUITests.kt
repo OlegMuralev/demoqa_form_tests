@@ -8,7 +8,7 @@ import utils.StudentDataFactory
 class StudentRegistrationFormUITests: TestBase() {
 
     @Test
-    @DisplayName("Проверка заполнения всех полей формы регистрации валидными данными")
+    @DisplayName("Check filling all registration form fields with valid data")
     fun testFillAllFieldsOfTheRegistrationForm() {
         val student = StudentDataFactory.create()
         val steps = WebStepsForStudentRegistrationPage(student)
@@ -30,7 +30,7 @@ class StudentRegistrationFormUITests: TestBase() {
     }
 
     @Test
-    @DisplayName("Проверка заполнения формы c невалидным Email -> получили ошибку, заполнили корректным email -> успех")
+    @DisplayName("Check filling form with invalid email -> error received, then corrected -> success")
     fun testFillRegistrationFormWithInvalidEmail() {
         val validEmail = "student1@example.com"
         val invalidEmail = "bad-email"
@@ -46,7 +46,7 @@ class StudentRegistrationFormUITests: TestBase() {
     }
 
     @Test
-    @DisplayName("Проверка заполнения формы только обязательные поля")
+    @DisplayName("Check filling only mandatory fields in the form")
     fun fillMandatoryFieldsInTheForm() {
         val student = StudentDataFactory.create()
         val steps = WebStepsForStudentRegistrationPage(student)

@@ -12,37 +12,37 @@ class WebStepsForStudentRegistrationPage(
     private val studentRegistrationPage: StudentRegistrationPage = StudentRegistrationPage(),
     private val thanksForSubmittingFormModalWindow: ThanksForSubmittingFormModalWindow = ThanksForSubmittingFormModalWindow()
 ) {
-    @Step("Открыть страницу формы регистрации студента")
+    @Step("Open the student registration form page")
     fun openStudentRegistrationForm() {
         studentRegistrationPage.openPageRemoveBanners()
     }
 
-    @Step("Заполнить поле 'First Name'")
+    @Step("Fill in the 'First Name' field")
     fun fillFirstName(firstName: String = student.firstName) {
         studentRegistrationPage.setFirstName(firstName)
     }
 
-    @Step("Заполнить поле 'Last Name'")
+    @Step("Fill in the 'Last Name' field")
     fun fillLastName(lastName: String = student.lastName) {
         studentRegistrationPage.setLastName(lastName)
     }
 
-    @Step("Заполнить поле 'Email'")
+    @Step("Fill in the 'Email' field")
     fun fillUserEmail(email: String = student.email) {
         studentRegistrationPage.setUserEmail(email)
     }
 
-    @Step("Выбрать пол")
+    @Step("Select gender")
     fun selectGender(gender: Gender = student.gender) {
         studentRegistrationPage.selectGender(gender)
     }
 
-    @Step("Заполнить поле 'Mobile'")
+    @Step("Fill in the 'Mobile' field")
     fun setMobilePhone(phone: String = student.phone) {
         studentRegistrationPage.setMobilePhone(phone)
     }
 
-    @Step("Заполнить поле 'Date Of Birth'")
+    @Step("Fill in the 'Date Of Birth' field")
     fun setDateOfBirth(
         dayOfBirth: String = student.dayOfBirth,
         monthOfBirth: String = student.monthOfBirth,
@@ -51,32 +51,32 @@ class WebStepsForStudentRegistrationPage(
         studentRegistrationPage.setDateOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
     }
 
-    @Step("Заполнить поле 'Subjects'")
+    @Step("Fill in the 'Subjects' field")
     fun setSubject(subject: String = student.subject) {
         studentRegistrationPage.fillSubject(subject)
     }
 
-    @Step("Выбрать хобби")
+    @Step("Select hobbies")
     fun selectRandomHobbies(hobby: List<Hobby> = student.hobby) {
         studentRegistrationPage.selectHobbies(hobby)
     }
 
-    @Step("Загрузить фото")
+    @Step("Upload photo")
     fun uploadPhoto(photo: String = student.photo) {
         studentRegistrationPage.uploadPicture(photo)
     }
 
-    @Step("Заполнить поле 'Current Address'")
+    @Step("Fill in the 'Current Address' field")
     fun setCurrentAddress(address: String = student.address) {
         studentRegistrationPage.setCurrentAddress(address)
     }
 
-    @Step("Выбрать область и город")
+    @Step("Select state and city")
     fun setStateAndCity(state: String = student.state, city: String = student.city) {
         studentRegistrationPage.setStateAndCity(state, city)
     }
 
-    @Step("Заполнить все поля в форме")
+    @Step("Fill in all fields in the form")
     fun fillAllFieldsInTheForm() {
         fillFirstName()
         fillLastName()
@@ -91,7 +91,7 @@ class WebStepsForStudentRegistrationPage(
         setStateAndCity()
     }
 
-    @Step("Заполнить только обязательные поля в форме")
+    @Step("Fill in only mandatory fields in the form")
     fun fillMandatoryFieldsInTheForm() {
         fillFirstName()
         fillLastName()
@@ -99,21 +99,20 @@ class WebStepsForStudentRegistrationPage(
         setMobilePhone()
     }
 
-
-    @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
+    @Step("Click the Submit button and check that the 'Thanks for submitting the form' modal window appears")
     fun clickSubmitButtonAndCheckModalDialogAppears() {
         studentRegistrationPage.clickSubmitButton()
         thanksForSubmittingFormModalWindow.checkModalDialogAppear()
     }
 
-    @Step("Нажать кнопку Submit и проверить, что валидация поле не прошла'")
+    @Step("Click the Submit button and check that the field validation failed")
     fun clickSubmitButtonExpectingValidationError() {
         studentRegistrationPage.clickSubmitButton()
         studentRegistrationPage.checkValidationFails()
         thanksForSubmittingFormModalWindow.checkModalDialogNotAppear()
     }
 
-    @Step("Проверить, что поле 'Student Name' заполнено корректно")
+    @Step("Verify that the 'Student Name' field is filled in correctly")
     fun assertStudentName() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(
             label = "Student Name",
@@ -121,22 +120,22 @@ class WebStepsForStudentRegistrationPage(
         )
     }
 
-    @Step("Проверить, что поле 'Student Email' заполнено корректно")
+    @Step("Verify that the 'Student Email' field is filled in correctly")
     fun assertStudentEmail(email: String = student.email) {
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Student Email", value = email)
     }
 
-    @Step("Проверить, что поле 'Gender' заполнено корректно")
+    @Step("Verify that the 'Gender' field is filled in correctly")
     fun assertGender() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Gender", value = student.gender.displayedName)
     }
 
-    @Step("Проверить, что поле 'Mobile' заполнено корректно")
+    @Step("Verify that the 'Mobile' field is filled in correctly")
     fun assertMobilePhone() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Mobile", value = student.phone)
     }
 
-    @Step("Проверить, что поле 'Date of Birth' заполнено корректно")
+    @Step("Verify that the 'Date of Birth' field is filled in correctly")
     fun assertDateOfBirth() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(
             label = "Date of Birth",
@@ -144,23 +143,23 @@ class WebStepsForStudentRegistrationPage(
         )
     }
 
-    @Step("Проверить, что поле 'Subjects' заполнено корректно")
+    @Step("Verify that the 'Subjects' field is filled in correctly")
     fun assertSubject() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Subjects", value = student.subject)
     }
 
-    @Step("Проверить, что поле 'Hobbies' заполнено корректно")
+    @Step("Verify that the 'Hobbies' field is filled in correctly")
     fun assertHobbies() {
         val hobbiesList: String = student.hobby.joinToString(", ") { it.displayedName }
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Hobbies", value = hobbiesList)
     }
 
-    @Step("Проверить, что поле 'Picture' заполнено корректно")
+    @Step("Verify that the 'Picture' field is filled in correctly")
     fun assertPicture() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(label = "Picture", value = student.photo)
     }
 
-    @Step("Проверить, что поле 'State and City' заполнено корректно")
+    @Step("Verify that the 'State and City' field is filled in correctly")
     fun assertStateAndCity() {
         thanksForSubmittingFormModalWindow.checkTableResponsive(
             label = "State and City",
@@ -168,10 +167,9 @@ class WebStepsForStudentRegistrationPage(
         )
     }
 
-    @Step("Нажать кнопку 'Close' в модальном окне 'Thanks for submitting the form'")
+    @Step("Click the 'Close' button in the 'Thanks for submitting the form' modal window")
     fun clickCloseButton() {
         thanksForSubmittingFormModalWindow.clickCloseButton()
         thanksForSubmittingFormModalWindow.checkModalDialogDisappear()
-
     }
 }

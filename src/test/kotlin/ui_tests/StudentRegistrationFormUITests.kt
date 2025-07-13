@@ -44,4 +44,13 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.clickSubmitButtonAndCheckModalDialogAppears()
         steps.assertStudentEmail(email = validEmail)
     }
+
+    @Test
+    @DisplayName("Проверка заполнения формы только обязательные поля")
+    fun fillMandatoryFieldsInTheForm() {
+        val student = StudentDataFactory.create()
+        val steps = WebStepsForStudentRegistrationPage(student)
+        steps.openStudentRegistrationForm()
+        steps.fillMandatoryFieldsInTheForm()
+    }
 }

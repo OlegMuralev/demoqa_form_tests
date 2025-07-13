@@ -91,6 +91,14 @@ class WebStepsForStudentRegistrationPage(
         setStateAndCity()
     }
 
+    @Step("Заполнить только обязательные поля в форме")
+    fun fillMandatoryFieldsInTheForm() {
+        fillFirstName()
+        fillLastName()
+        selectGender()
+        setMobilePhone()
+    }
+
 
     @Step("Нажать кнопку Submit и проверить открытие модального окна 'Thanks for submitting the form'")
     fun clickSubmitButtonAndCheckModalDialogAppears() {

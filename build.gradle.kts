@@ -27,6 +27,7 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    systemProperty("org.slf4j.simpleLogger.defaultLogLevel", "info")
 }
 
 kotlin {

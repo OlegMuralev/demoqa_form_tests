@@ -1,16 +1,43 @@
 package ui_tests
 
 import org.junit.jupiter.api.DisplayName
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.MethodSource
 import steps.WebStepsForStudentRegistrationPage
+import utils.StudentData
 import utils.StudentDataFactory
+import java.util.stream.Stream
 
-class StudentRegistrationFormUITests: TestBase() {
 
-    @Test
+class StudentRegistrationFormUITests : TestBase() {
+
+    companion object {
+        @JvmStatic
+        fun studentDataProvider(): Stream<StudentData> {
+            return Stream.of(
+                StudentDataFactory.create(),
+                StudentDataFactory.create()
+            )
+        }
+
+        @JvmStatic
+        fun invalidEmailProvider(): Stream<String> {
+            return Stream.of(
+                "plainaddress",
+                "@missingusername.com",
+                "username@.com",
+                "username@.com.",
+                "username@domain..com",
+                "username@domain,com",
+                "username@domain com"
+            )
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("studentDataProvider")
     @DisplayName("Check filling all registration form fields with valid data")
-    fun testFillAllFieldsOfTheRegistrationForm() {
-        val student = StudentDataFactory.create()
+    fun testFillAllFieldsOfTheRegistrationForm(student: StudentData) {
         val steps = WebStepsForStudentRegistrationPage(student)
 
         steps.openStudentRegistrationForm()
@@ -29,11 +56,11 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.clickCloseButton()
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("invalidEmailProvider")
     @DisplayName("Check filling form with invalid email -> error received, then corrected -> success")
-    fun testFillRegistrationFormWithInvalidEmail() {
+    fun testFillRegistrationFormWithInvalidEmail(invalidEmail: String) {
         val validEmail = "student1@example.com"
-        val invalidEmail = "bad-email"
         val studentWithInvalidEmail = StudentDataFactory.create().copy(email = invalidEmail)
         val steps = WebStepsForStudentRegistrationPage(studentWithInvalidEmail)
 
@@ -45,12 +72,13 @@ class StudentRegistrationFormUITests: TestBase() {
         steps.assertStudentEmail(email = validEmail)
     }
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("studentDataProvider")
     @DisplayName("Check filling only mandatory fields in the form")
-    fun fillMandatoryFieldsInTheForm() {
-        val student = StudentDataFactory.create()
+    fun fillMandatoryFieldsInTheForm(student: StudentData) {
         val steps = WebStepsForStudentRegistrationPage(student)
         steps.openStudentRegistrationForm()
         steps.fillMandatoryFieldsInTheForm()
+        steps.clickSubmitButtonAndCheckModalDialogAppears()
     }
 }

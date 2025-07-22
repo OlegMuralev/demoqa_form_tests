@@ -19,6 +19,7 @@ dependencies {
     testImplementation("com.codeborne:selenide:7.6.1")
     testImplementation("io.qameta.allure:allure-rest-assured:2.29.0")
     testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.10.0")
     testImplementation("io.github.bonigarcia:webdrivermanager:5.9.2")
     testImplementation("io.qameta.allure:allure-junit5:2.24.0")
     testImplementation("io.qameta.allure:allure-selenide:2.24.0")

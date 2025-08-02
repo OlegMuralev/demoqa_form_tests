@@ -3,9 +3,7 @@ package ui_tests
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
-import steps.StudentRegistrationSteps
 import steps.WebStepsForStudentRegistrationPage
-import steps.WebStudentRegistrationSteps
 import utils.StudentData
 import utils.StudentDataFactory
 import java.util.stream.Stream
@@ -40,13 +38,22 @@ class StudentRegistrationFormUITests : TestBase() {
     @MethodSource("studentDataProvider")
     @DisplayName("Check filling all registration form fields with valid data")
     fun testFillAllFieldsOfTheRegistrationForm(student: StudentData) {
-        val steps: StudentRegistrationSteps = WebStudentRegistrationSteps(WebStepsForStudentRegistrationPage(student))
+        val steps = WebStepsForStudentRegistrationPage(student)
 
-        steps.openForm()
-        steps.fillAllFields()
-        steps.submitExpectSuccess()
-        steps.verifyAllFields()
-        steps.closeModal()
+        steps.openStudentRegistrationForm()
+        steps.fillAllFieldsInTheForm()
+        steps.clickSubmitButtonAndCheckModalDialogAppears()
+
+        steps.assertStudentName()
+        steps.assertStudentEmail()
+        steps.assertGender()
+        steps.assertMobilePhone()
+        steps.assertDateOfBirth()
+        steps.assertSubject()
+        steps.assertHobbies()
+        steps.assertPicture()
+        steps.assertStateAndCity()
+        steps.clickCloseButton()
     }
 
     @ParameterizedTest
